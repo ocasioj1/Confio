@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Confio</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="button">Save Configurations</string>
+
+    <string-array name="presets">
+        <item>Temperature</item>
+        <item>Gyroscope</item>
+        <item>Humidity</item>
+        <item>Proximity</item>
+        <item>Button</item>
+    </string-array>
+</resources>
+
