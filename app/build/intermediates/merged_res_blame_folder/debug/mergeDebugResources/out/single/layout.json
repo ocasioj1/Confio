@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.example.test2.app-mergeDebugResources-53:/layout/fragment_dashboard.xml",
+        "source": "com.example.test2.app-main-56:/layout/fragment_dashboard.xml"
+    },
+    {
+        "merged": "com.example.test2.app-mergeDebugResources-53:/layout/activity_main.xml",
+        "source": "com.example.test2.app-main-56:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.test2.app-mergeDebugResources-53:/layout/fragment_home.xml",
+        "source": "com.example.test2.app-main-56:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "com.example.test2.app-mergeDebugResources-53:/layout/fragment_notifications.xml",
+        "source": "com.example.test2.app-main-56:/layout/fragment_notifications.xml"
+    }
+]
