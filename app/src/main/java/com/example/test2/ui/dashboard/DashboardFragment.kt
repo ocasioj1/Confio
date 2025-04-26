@@ -1,5 +1,6 @@
 package com.example.test2.ui.dashboard
 
+
 import android.Manifest
 import android.app.Activity
 import android.bluetooth.*
@@ -25,9 +26,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test2.databinding.FragmentDashboardBinding
 import java.util.*
+import com.example.test2.ble.BleViewModel
+
+
 
 class DashboardFragment : Fragment() {
 
+    private val bleVm: BleViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(BleViewModel::class.java)
+    }
     private var _binding: FragmentDashboardBinding? = null
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
@@ -64,6 +71,7 @@ class DashboardFragment : Fragment() {
         dashboardViewModel.text.observe(viewLifecycleOwner) {
             binding.textDashboard.text = it
         }
+
         return root
     }
 
@@ -83,11 +91,7 @@ class DashboardFragment : Fragment() {
             checkPermissionsAndConnect()
         }
 
-        // Suppose you have a separate button to send the signal.
-        // For example, add a new button (btnSend) in your fragment layout.
-        binding.btnSend.setOnClickListener {
-            sendSignalToESP32()
-        }
+
     }
 
     private fun checkPermissionsAndConnect() {
@@ -139,7 +143,7 @@ class DashboardFragment : Fragment() {
             Toast.makeText(requireContext(), "No bonded devices found", Toast.LENGTH_SHORT).show()
             return
         }
-        val esp32Device = bondedDevices.find { device -> device.name == "MyESP32" }
+        val esp32Device = bondedDevices.find { device -> device.name == "ESP32-S3-LED" }
         if (esp32Device == null) {
             Toast.makeText(requireContext(), "ESP32 not found among bonded devices", Toast.LENGTH_SHORT).show()
             return
@@ -204,7 +208,32 @@ class DashboardFragment : Fragment() {
             return
         }
         // Prepare the value to be written. For example, "1" to signal the LED to turn on.
-        val valueToSend = "1"
+        val valueToSend = "LED1"
+        characteristic.value = valueToSend.toByteArray(Charsets.UTF_8)
+        // Write the characteristic.
+        val writeResult = gatt.writeCharacteristic(characteristic)
+        Log.i("BLE", "Attempted to write characteristic: result=$writeResult")
+    }
+    private fun turnOffLed() {
+        val gatt = connectedGatt
+        if (gatt == null) {
+            Toast.makeText(requireContext(), "Not connected to ESP32", Toast.LENGTH_SHORT).show()
+            return
+        }
+        // Retrieve the desired service.
+        val service = gatt.getService(serviceUUID)
+        if (service == null) {
+            Log.e("BLE", "Service with UUID $serviceUUID not found")
+            return
+        }
+        // Retrieve the writable characteristic.
+        val characteristic = service.getCharacteristic(charUUID)
+        if (characteristic == null) {
+            Log.e("BLE", "Characteristic with UUID $charUUID not found")
+            return
+        }
+        // Prepare the value to be written. For example, "1" to signal the LED to turn on.
+        val valueToSend = "LED0"
         characteristic.value = valueToSend.toByteArray(Charsets.UTF_8)
         // Write the characteristic.
         val writeResult = gatt.writeCharacteristic(characteristic)

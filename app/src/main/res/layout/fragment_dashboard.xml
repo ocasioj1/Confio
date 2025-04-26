@@ -34,45 +34,45 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Open Database Button (button3) -->
-    <Button
-        android:id="@+id/button_open_database"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Open Database"
-        app:layout_constraintTop_toBottomOf="@id/text_welcome"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Configure Button (button4) -->
-    <Button
-        android:id="@+id/button_configure"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Configure"
-        app:layout_constraintTop_toBottomOf="@id/button_open_database"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
 
     <!-- Scan BLE Devices Button (btnScan) -->
-    <Button
-        android:id="@+id/btnScan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Scan BLE Devices"
-        app:layout_constraintTop_toBottomOf="@id/button_configure"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
 
-    <Button
-        android:id="@+id/btnSend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Send Signal"
-        app:layout_constraintTop_toBottomOf="@id/btnScan"
-        app:layout_constraintStart_toStartOf="parent"
+    <LinearLayout
+        android:layout_width="209dp"
+        android:layout_height="273dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_welcome">
+
+        <Button
+            android:id="@+id/btnScan"
+            android:layout_width="205dp"
+            android:layout_height="59dp"
+            android:backgroundTint="@color/green_button"
+            android:text="Connect to PCB"
+
+            />
+
+        <Button
+            android:id="@+id/buttonConfigure"
+            android:layout_width="205dp"
+            android:layout_height="59dp"
+            android:backgroundTint="@color/green_button"
+            android:text="Configure" />
+
+        <Button
+            android:id="@+id/button_open_database"
+            android:layout_width="205dp"
+            android:layout_height="59dp"
+            android:backgroundTint="@color/green_button"
+            android:text="Open Database"
+
+            />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

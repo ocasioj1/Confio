@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.test2.databinding.FragmentHomeBinding
+import com.example.test2.ble.BleViewModel
+
 
 class HomeFragment : Fragment() {
 
